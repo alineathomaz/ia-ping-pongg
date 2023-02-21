@@ -22,7 +22,7 @@ rightWristX = 0;
 rightWristY = 0;
 scoreRightWrist = 0;
 
-game_status = 0;
+game_status = ""; //a variável será um string vazia
 //Coordenadas x, y, raio, velocidade em x e velocidade em y
 ball = {
     x:350/2,
@@ -54,8 +54,9 @@ function modelLoaded(){
 
 
 function draw(){
-  if(game_status == "start");
-
+  if(game_status == "start"){  
+  //if não tem ";" no final, tem "{" e dentro dela você coloca os comandos para serem executados de a condição for verdadeira    
+   
   background(0); 
 
   fill("black");
@@ -66,7 +67,13 @@ function draw(){
   stroke("black");
   rect(0,0,20,700);
 
-
+  if(scoreRightWrist > 0.2)
+  {
+    fill("red");
+    stroke("red");
+    circle(rightWristX, rightWristY, 30);
+  }
+      
   //Chamar a função paddleInCanvas() 
   paddleInCanvas();
 
@@ -74,7 +81,7 @@ function draw(){
   fill(250,0,0);
   stroke(0,0,250);
   strokeWeight(0.5);
-  paddle1Y = mouseY; 
+  paddle1Y = rightWristY; //a raquete deve acompanhar o pulso no eixo Y
   rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
 
 
@@ -95,18 +102,13 @@ function draw(){
 
   //Chamar a função move() (muito importante para o jogo)
   move();
-
-  if(scoreRightWrist > 0.2)
-  {
-    fill("red");
-    stroke("red");
-    circle(rightWristX, rightWristY, 30);
   }
+  
 }
 
 function startGame()
 {
-  Gamestatus = "start"; //Defina o valor da variavel status
+  game_status = "start"; //Defina o valor da variavel game_status (a grafia da variável deve ser a mesma da que foi definida no início do programa)
   document.getElementById("status").innerHTML = " O jogo está carregando";
 }
 
